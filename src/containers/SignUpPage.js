@@ -34,7 +34,11 @@ export default class SignUp extends Component {
     firebase.onAuth(function(user) {
       if (user) {
         that.setState({loggedIn: true, user: user});
-        
+        var presenceRef = firebase.push('presence',{
+          data: {uid: this.state.user.uid}
+        })
+
+        presenceRef.onDisconnect().remove();
       } else {
         that.setState({loggedIn: false, user: ''}) 
       }

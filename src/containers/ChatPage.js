@@ -45,11 +45,6 @@ export default class Chat extends Component {
       asArray: true
     });
 
-    var presenceRef = firebase.push('presence',{
-      data: {uid: this.state.user.uid}
-    })
-
-    presenceRef.onDisconnect().remove();
   }
 
   componentWillUnmount(){
