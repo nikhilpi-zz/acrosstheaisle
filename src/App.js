@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory } from 'react-router'
 
-import ChatPage from './containers/ChatPage';
-import SignUpPage from './containers/SignUpPage';
+import ChatPage from './containers/ChatPage/ChatPage';
+import SignUpPage from './containers/SignUpPage/SignUpPage';
 
 export default class App extends Component {
   render() {

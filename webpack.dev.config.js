@@ -26,8 +26,11 @@ module.exports = {
         loader: 'babel',
         include: path.join(__dirname, 'src')
       },
-      { test: /\.scss?$/,
-        loader: 'style!css!sass',
+      { test: /\.css$/,
+        loaders: [
+            'style?sourceMap',
+            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        ],
         include: path.join(__dirname, 'src', 'styles') },
       { test: /\.png$/,
         loader: 'file' },

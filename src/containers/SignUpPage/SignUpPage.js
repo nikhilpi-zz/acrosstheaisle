@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import firebase from '../firebase'
-import { getChatandAdd } from '../lib/chatFinder';
+import firebase from '../../firebase'
+import { getChatandAdd } from '../../lib/chatFinder';
 import { browserHistory } from 'react-router'
 
 export default class SignUp extends Component {

@@ -17,7 +17,6 @@ function getChatandAdd(user,profile,cb) {
             limitToFirst: 1
         },
         then(data){
-            console.log(data)
             if (data.length){
                 const target = data[0]
                 console.log('Person found waiting in room ' + data.target)

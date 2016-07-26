@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import firebase from '../firebase'
-import { getChatandAdd } from '../lib/chatFinder';
+import firebase from '../../firebase'
+import { getChatandAdd } from '../../lib/chatFinder';
 
-import MessageList from '../components/MessageList'
-import MessageInput from '../components/MessageInput'
+import MessageList from '../../components/MessageList'
+import MessageInput from '../../components/MessageInput'
 
 
 export default class Chat extends Component {
@@ -11,7 +11,7 @@ export default class Chat extends Component {
     super(props)
     this.state = {
       messages: [],
-      state: 'waiting',
+      // state: 'waiting',
       chatId: this.props.params.id,
       user: firebase.auth().currentUser,
       profile: {},
@@ -39,6 +39,8 @@ export default class Chat extends Component {
       state: 'state',
     });
 
+    //TODO: set state to disconnected on disconnect
+
     this.presenceRef = firebase.syncState('presence', {
       context: this,
       state: 'online',
@@ -49,14 +51,20 @@ export default class Chat extends Component {
 
   componentWillUnmount(){
     firebase.removeBinding(this.userRef);
-    firebase.removeBinding(this.messagesRef);
+    // firebase.removeBinding(this.messagesRef);
     firebase.removeBinding(this.stateRef);
     firebase.removeBinding(this.presenceRef);
   }
 
   sendMessage(message) {
     const { messages, user, profile } = this.state;
-    this.setState({messages: messages.concat([{body: message, party: profile.party}])});
+    const newMessages = messages.concat([{
+      body: message, 
+      party: profile.party,
+      createdAt: (new Date()).toJSON()
+    }]);
+    this.setState({messages: newMessages});
+    console.log(newMessages)
   }
 
   handleDisconnectChat(){
