@@ -78,7 +78,7 @@ export default class SignUp extends Component {
             name="party" 
             value="democrat"
             checked={this.state.party === 'democrat'} 
-            onChange={this.handlePartyChange}/> Democrat
+            onChange={this.handlePartyChange}/> test
           <input type="radio" 
             name="party" 
             value="republican"

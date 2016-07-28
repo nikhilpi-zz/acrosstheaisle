@@ -5,6 +5,7 @@ module.exports = {
   devtool: 'eval',
 
   entry: [
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack-hot-middleware/client',
     './src/index'
   ],
@@ -23,7 +24,7 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js?$/,
-        loader: 'babel',
+        loaders:  ['react-hot', 'babel'],
         include: path.join(__dirname, 'src')
       },
       { test: /\.css$/,
