@@ -1,3 +1,14 @@
+
+require('babel-register')({
+  presets: ['es2015', 'react']
+});
+require.extensions['.scss'] = () => {
+  return;
+};
+require.extensions['.css'] = () => {
+  return;
+};
+
 const Server = require('./server.js')
 const port = (process.env.PORT || 8080)
 const app = Server.app()
@@ -12,7 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 
   app.use(webpackHotMiddleware(compiler))
   app.use(webpackDevMiddleware(compiler, {
-    noInfo: false,
+    noInfo: true,
     colors: true,
     publicPath: config.output.publicPath
   }))
@@ -28,7 +39,8 @@ if (process.env.NODE_ENV !== 'production') {
 
     console.log('Listening at http://localhost:3000/');
   });
+} else {
+  app.listen(port)
+  console.log(`Listening at http://localhost:${port}`)
 }
 
-app.listen(port)
-console.log(`Listening at http://localhost:${port}`)

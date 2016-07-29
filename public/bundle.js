@@ -27026,6 +27026,8 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	// import styles from './styles.css'
+	
 	var SignUp = function (_Component) {
 	  _inherits(SignUp, _Component);
 	
@@ -27050,7 +27052,6 @@
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var that = this;
-	
 	      if (!this.state.user) {
 	        _firebase2.default.authAnonymously(function (error) {
 	          if (error) {
@@ -27108,10 +27109,10 @@
 	
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { styles: styles.container },
 	        _react2.default.createElement(
 	          'form',
-	          { onSubmit: this.handleSubmit },
+	          { onSubmit: this.handleSubmit, styles: styles.body },
 	          _react2.default.createElement('input', { type: 'radio',
 	            name: 'party',
 	            value: 'democrat',

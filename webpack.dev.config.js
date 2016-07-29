@@ -23,20 +23,23 @@ module.exports = {
 
   module: {
     loaders: [
+      { test: /\.css?$/,
+        loaders: [
+            'style-loader',
+            'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        ],
+        include: path.join(__dirname, 'src', 'styles') 
+      },
       { test: /\.js?$/,
         loaders:  ['react-hot', 'babel'],
         include: path.join(__dirname, 'src')
       },
-      { test: /\.css$/,
-        loaders: [
-            'style?sourceMap',
-            'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
-        ],
-        include: path.join(__dirname, 'src', 'styles') },
       { test: /\.png$/,
         loader: 'file' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file'}
+        loader: 'file',
+        include: path.join(__dirname, 'src', 'public') 
+      }
     ]
-  }
+  },
 }

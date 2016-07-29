@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../../firebase'
 import { getChatandAdd } from '../../lib/chatFinder';
 import { browserHistory } from 'react-router'
+import styles from './styles';
 
 export default class SignUp extends Component {
   constructor(props){
@@ -20,7 +21,6 @@ export default class SignUp extends Component {
 
   componentDidMount() {
     var that = this;
-
     if (!this.state.user) {
       firebase.authAnonymously(function(error) {
         if (error) {
@@ -45,9 +45,9 @@ export default class SignUp extends Component {
     });
   }
 
-  handlePartyChange(event){
+  handlePartyChange(party){
     this.setState({
-      party: event.target.value
+      party
     })
   }
 
@@ -72,24 +72,30 @@ export default class SignUp extends Component {
     const partySelected = party.length ? true : false;
 
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="radio" 
-            name="party" 
-            value="democrat"
-            checked={this.state.party === 'democrat'} 
-            onChange={this.handlePartyChange}/> test
-          <input type="radio" 
-            name="party" 
-            value="republican"
-            checked={this.state.party === 'republican'} 
-            onChange={this.handlePartyChange}/> Republican
-
-          <input type="submit" value="Get Started"/>
-            
+      <div style={styles.container}>
+        <div style={styles.welcomeInfo}>
+          <h1>Welcome</h1>
+          <p>Wayfarers 90s gastropub trust fund fanny pack, photo booth put a bird on it man braid taxidermy crucifix skateboard YOLO kickstarter raw denim. Pug lumbersexual freegan keffiyeh taxidermy, lomo fashion axe affogato drinking vinegar forage. Post-ironic cornhole shoreditch swag locavore stumptown. Vegan hoodie blue bottle brunch semiotics, pug kale chips. Chambray church-key portland, everyday carry freegan echo park forage cold-pressed scenester four dollar toast distillery taxidermy. Ugh kogi gentrify before they sold out migas, everyday carry shoreditch leggings pop-up man braid. Sriracha banjo butcher, deep v bicycle rights umami raw denim post-ironic yuccie polaroid before they sold out crucifix.</p>
+        </div>
+        <form onSubmit={this.handleSubmit} style={styles.formContianer}>
+          <div style={styles.partyOptions}>
+            <input type="image" 
+              src="/imgs/demo.svg"
+              name="party" 
+              style={styles.partyButton}
+              checked={this.state.party === 'democrat'} 
+              onClick={() => this.handlePartyChange('democrat')}/>
+            <input type="image" 
+              src="/imgs/rub.svg"
+              name="party"
+              style={styles.partyButton}
+              checked={this.state.party === 'republican'} 
+              onClick={() => this.handlePartyChange('republican')}/>
+          </div>
         </form>
 
       </div>  
     );
   }
 }
+

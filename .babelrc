@@ -10,5 +10,6 @@
         "react-hmre"
       ]
     }
-  }
+  },
+  "ignore": ["*.css"]
 }
