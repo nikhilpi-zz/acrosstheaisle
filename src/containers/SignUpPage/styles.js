@@ -3,7 +3,7 @@ import {colors} from '../../lib/colors';
 const styles = {
     welcomeInfo: {
         color: colors.white,
-        width: '50%',
+        width: '80%',
         fontFamily: "'Lato', sans-serif",
     },
     container: {

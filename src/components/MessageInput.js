@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styles from './MessageInputStyles';
 
 export default class MessageInput extends Component {
   constructor(props){
@@ -27,13 +28,17 @@ export default class MessageInput extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} style={styles.container}>
         <input
           type="text"
           value={this.state.message}
           onChange={this.handleChangeMessage}
+          style={styles.textInput}
         />
-        <input type="submit" value="Post" />
+        <input type="submit" 
+          value="Post" 
+          className="btn"
+          style={styles.submit}/>
       </form>
     );
   }

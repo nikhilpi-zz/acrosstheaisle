@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import firebase from '../../firebase'
 import { getChatandAdd } from '../../lib/chatFinder';
+import styles from './styles';
 
 import MessageList from '../../components/MessageList'
 import MessageInput from '../../components/MessageInput'
+
 
 
 export default class Chat extends Component {
@@ -11,7 +13,7 @@ export default class Chat extends Component {
     super(props)
     this.state = {
       messages: [],
-      // state: 'waiting',
+      state: 'waiting',
       chatId: this.props.params.id,
       user: firebase.auth().currentUser,
       profile: {},
@@ -51,7 +53,7 @@ export default class Chat extends Component {
 
   componentWillUnmount(){
     firebase.removeBinding(this.userRef);
-    // firebase.removeBinding(this.messagesRef);
+    firebase.removeBinding(this.messagesRef);
     firebase.removeBinding(this.stateRef);
     firebase.removeBinding(this.presenceRef);
   }
@@ -81,10 +83,16 @@ export default class Chat extends Component {
     const {online} = this.state;
     const onlineCount = online.length;
     return (
-      <div>
-        <h2>{this.state.state} Online Now:{onlineCount}</h2>
-        <MessageList messages={this.state.messages}/>
-        <MessageInput onMessageSubmit={this.sendMessage}/>
+      <div style={styles.container}>
+        <div style={styles.chatNav}>
+          <h2>{this.state.state} Online Now:{onlineCount}</h2>
+        </div>
+        <div style={styles.chatMessages}>
+          <MessageList messages={this.state.messages}/>
+        </div>
+        <div style={styles.chatInput}>
+          <MessageInput onMessageSubmit={this.sendMessage}/>
+        </div>
       </div>  
     );
   }

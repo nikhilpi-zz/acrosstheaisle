@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import styles from './MessageListStyles';
 
 export default class MessageList extends Component {
   render() {
     return (
-      <div>
-        <ul>
-          {this.props.messages.map((message)=>{
-            return <li>{message.party}: {message.body}</li>
-          })}
-        </ul>
+      <div style={styles.container}>
+        {this.props.messages.map((message)=>{
+          return <div style={styles.row}><span style={styles[message.party]}>{message.party}:</span> {message.body}</div>
+        })}
       </div>
     );
   }

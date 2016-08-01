@@ -75,8 +75,8 @@ export default class SignUp extends Component {
       <div style={styles.container}>
         <div style={styles.welcomeInfo}>
           <h1>Welcome</h1>
-          <p>Wayfarers 90s gastropub trust fund fanny pack, photo booth put a bird on it man braid taxidermy crucifix skateboard YOLO kickstarter raw denim. Pug lumbersexual freegan keffiyeh taxidermy, lomo fashion axe affogato drinking vinegar forage. Post-ironic cornhole shoreditch swag locavore stumptown. Vegan hoodie blue bottle brunch semiotics, pug kale chips. Chambray church-key portland, everyday carry freegan echo park forage cold-pressed scenester four dollar toast distillery taxidermy. Ugh kogi gentrify before they sold out migas, everyday carry shoreditch leggings pop-up man braid. Sriracha banjo butcher, deep v bicycle rights umami raw denim post-ironic yuccie polaroid before they sold out crucifix.</p>
-        </div>
+          <p className="lead">Wayfarers 90s gastropub trust fund fanny pack, photo booth put a bird on it man braid taxidermy crucifix skateboard YOLO kickstarter raw denim. Pug lumbersexual freegan keffiyeh taxidermy, lomo fashion axe affogato drinking vinegar forage. Post-ironic cornhole shoreditch swag locavore stumptown. Vegan hoodie blue bottle brunch semiotics, pug kale chips. Chambray church-key portland, everyday carry freegan echo park forage cold-pressed scenester four dollar toast distillery taxidermy. Ugh kogi gentrify before they sold out migas, everyday carry shoreditch leggings pop-up man braid. Sriracha banjo butcher, deep v bicycle rights umami raw denim post-ironic yuccie polaroid before they sold out crucifix.</p>
+        
         <form onSubmit={this.handleSubmit} style={styles.formContianer}>
           <div style={styles.partyOptions}>
             <input type="image" 
@@ -93,7 +93,7 @@ export default class SignUp extends Component {
               onClick={() => this.handlePartyChange('republican')}/>
           </div>
         </form>
-
+        </div>
       </div>  
     );
   }
