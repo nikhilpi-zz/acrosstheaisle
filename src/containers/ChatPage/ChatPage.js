@@ -31,6 +31,7 @@ export default class Chat extends Component {
       state: 'profile',
     });
 
+
     this.messagesRef = firebase.syncState('chats/'+this.state.chatId+'/messages', {
       context: this,
       state: 'messages',
@@ -42,7 +43,13 @@ export default class Chat extends Component {
       state: 'state',
     });
 
-    //TODO: set state to disconnected on disconnect
+    firebase.database().ref(this.stateRef.endpoint).onDisconnect().set('disconnected')
+
+    var presenceRef = firebase.push('presence',{
+      data: {uid: this.state.user.uid}
+    })
+
+    presenceRef.onDisconnect().remove();
 
     this.presenceRef = firebase.syncState('presence', {
       context: this,
@@ -56,7 +63,6 @@ export default class Chat extends Component {
     // Check if new message was added, for example:
         if (this.state.messages.length === prevState.messages.length + 1) {
             var d = $('#message_list');
-            console.log(d)
             d.scrollTop(d.prop("scrollHeight"));
         }
   }
