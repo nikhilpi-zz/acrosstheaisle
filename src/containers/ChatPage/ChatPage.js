@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../../firebase'
 import { getChatandAdd } from '../../lib/chatFinder';
 import styles from './styles';
+import $ from 'jquery';
 
 import MessageList from '../../components/MessageList'
 import MessageInput from '../../components/MessageInput'
@@ -51,6 +52,15 @@ export default class Chat extends Component {
 
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    // Check if new message was added, for example:
+        if (this.state.messages.length === prevState.messages.length + 1) {
+            var d = $('#message_list');
+            console.log(d)
+            d.scrollTop(d.prop("scrollHeight"));
+        }
+  }
+
   componentWillUnmount(){
     firebase.removeBinding(this.userRef);
     firebase.removeBinding(this.messagesRef);
@@ -85,9 +95,10 @@ export default class Chat extends Component {
     return (
       <div style={styles.container}>
         <div style={styles.chatNav}>
-          <h2>{this.state.state} Online Now:{onlineCount}</h2>
+          <h2 style={styles.chatContentLeft}>Status: {this.state.state}</h2>
+          <h2 style={styles.chatContentRight}>Online Now: {onlineCount}</h2>
         </div>
-        <div style={styles.chatMessages}>
+        <div style={styles.chatMessages} id="message_list">
           <MessageList messages={this.state.messages}/>
         </div>
         <div style={styles.chatInput}>
