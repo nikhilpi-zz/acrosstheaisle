@@ -1,14 +1,3 @@
-
-require('babel-register')({
-  presets: ['es2015', 'react']
-});
-require.extensions['.scss'] = () => {
-  return;
-};
-require.extensions['.css'] = () => {
-  return;
-};
-
 const Server = require('./server.js')
 const port = (process.env.PORT || 8080)
 const app = Server.app()
